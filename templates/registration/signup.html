@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+
+{% block content %}
+<div class="container mt-5 pb-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input class="btn btn-primary px-4 mt-3" type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

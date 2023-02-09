@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div class="container mt-5">
+    <div class="row">
+        <!-- Blog List -->
+        <div class="col-lg-8">
+            {% for post in post_list %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title"><a class="text-decoration-none link-primary" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+                        <div class="small text-muted">Posted on {{ post.created_on }} by {{ post.author.first_name }} {{ post.author.last_name }}</div>
+                        <br/>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <nav aria-label="Pagination">
+                <hr class="my-0">
+                <ul class="pagination justify-content-center my-4">
+                    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}"><a class="page-link" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }} {% endif %}">&laquo; Newer</a></li>
+                    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}"><a class="page-link" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }} {% endif %}">Older &raquo;</a></li>
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+        {% block sidebar %} {% include 'commons/sidebar.html' %} {% endblock sidebar %}
+    </div>
+
+</div>
+{% endblock content %}

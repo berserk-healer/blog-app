@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Edit Post</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="btn btn-primary mb-5" type="submit" value="Update changes">
+    </form>
+</div>
+{% endblock content %}
